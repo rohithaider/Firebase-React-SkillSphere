@@ -6,7 +6,6 @@ const ForgetPassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extract the email from the state passed from the Login page (if any)
   useEffect(() => {
     if (location.state && location.state.email) {
       setEmail(location.state.email);

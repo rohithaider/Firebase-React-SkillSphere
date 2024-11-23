@@ -26,10 +26,10 @@ const auth = getAuth(app)
     useEffect(() => {
         
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-          setUser(currentUser);  // Update the user state
+          setUser(currentUser);  
         });
     
-        // Cleanup the subscription when the component unmounts
+       
         return () => unsubscribe();
       }, []);
 

@@ -99,7 +99,7 @@ const Login = () => {
             Forgot your password?{" "}
             <Link
               to="/forgot-password"
-              state={{ email }} // Pass the current email state to the ForgotPassword page
+              state={{ email }} 
               className="link link-primary"
             >
               Reset it here
