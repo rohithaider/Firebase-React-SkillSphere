@@ -1,12 +1,13 @@
-import  { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthProvider";
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing icons
 
 const Register = () => {
-const {createUser,setUser,logOut} = useContext(AuthContext)
+  const { createUser, setUser, logOut } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -16,6 +17,7 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
   });
 
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +30,6 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
   const handleRegister = (e) => {
     e.preventDefault();
 
-    // Password Validation
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
     if (!passwordRegex.test(formData.password)) {
       setError(
@@ -38,27 +39,21 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
       return;
     }
 
-    // Handle registration logic (e.g., sending data to an API)
-    createUser(formData.email,formData.password)
-    .then((result)=>{
-      const user = result.user;
-      setUser({
-        ...user,
-        displayName:formData.name,
-        photoURL:formData.photoURL,
+    createUser(formData.email, formData.password)
+      .then((result) => {
+        const user = result.user;
+        setUser({
+          ...user,
+          displayName: formData.name,
+          photoURL: formData.photoURL,
+        });
+        logOut();
       })
-      logOut();
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode,errorMessage)
-    })
+      .catch((error) => {
+        console.error(error.code, error.message);
+      });
 
-    // Show success message
     toast.success("Registration successful!");
-
-    // Reset error and form state after successful registration
     setError("");
     setFormData({
       name: "",
@@ -69,7 +64,6 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
   };
 
   const handleGoogleLogin = () => {
-    // Google Login logic
     console.log("Google Login");
     toast.info("Redirecting to Google login...");
   };
@@ -134,7 +128,7 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
               onChange={handleChange}
             />
           </div>
-          <div className="mb-5">
+          <div className="mb-5 relative">
             <label
               htmlFor="password"
               className="block text-base font-medium text-gray-700"
@@ -142,7 +136,7 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // Toggle input type
               id="password"
               name="password"
               className="input input-bordered w-full"
@@ -151,6 +145,13 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
               onChange={handleChange}
               required
             />
+            
+            <div
+              className="absolute top-2/4 right-3 transform -translate-y-2/4 cursor-pointer"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </div>
           </div>
 
           {error && (
@@ -185,7 +186,6 @@ const {createUser,setUser,logOut} = useContext(AuthContext)
         </p>
       </div>
 
-      {/* Toast Container */}
       <ToastContainer />
     </div>
   );
