@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
@@ -11,6 +11,16 @@ const Profile = () => {
     name: user?.displayName || "",
     photoURL: user?.photoURL || "",
   });
+
+
+  useEffect(() => {
+    if (user) {
+      setFormData({
+        name: user.displayName || "",
+        photoURL: user.photoURL || "",
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,14 +37,16 @@ const Profile = () => {
         displayName: formData.name,
         photoURL: formData.photoURL,
       });
+
       
       setUser({
         ...user,
         displayName: formData.name,
         photoURL: formData.photoURL,
       });
+
       toast.success("Profile updated successfully!");
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Failed to update profile. Please try again.");

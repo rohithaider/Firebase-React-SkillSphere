@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthProvider";
+import { signOut } from 'firebase/auth';
 
 const Register = () => {
-const {createUser,setUser} = useContext(AuthContext)
+const {createUser,setUser,logOut} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     name: "",
@@ -46,6 +47,7 @@ const {createUser,setUser} = useContext(AuthContext)
         displayName:formData.name,
         photoURL:formData.photoURL,
       })
+      logOut();
     })
     .catch((error) => {
       const errorCode = error.code;
