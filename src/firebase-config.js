@@ -6,13 +6,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-};
+    apiKey: "AIzaSyBIwsQqLb5rx_1VueYT8-KaEBD7rlJSGTI",
+    authDomain: "skillsphere-c2034.firebaseapp.com",
+    projectId: "skillsphere-c2034",
+    storageBucket: "skillsphere-c2034.firebasestorage.app",
+    messagingSenderId: "836427973378",
+    appId: "1:836427973378:web:c5cc8c3fdae2e4e79bf81b"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
