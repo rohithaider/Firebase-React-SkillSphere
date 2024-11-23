@@ -10,4 +10,12 @@ export default {
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      "light", // Default light theme
+      "dark",  // Default dark theme
+      "cupcake", 
+      "business",// Add more themes as needed
+    ],
+  }
 }

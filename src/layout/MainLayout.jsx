@@ -4,11 +4,13 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 const MainLayout = () => {
   return (
-    <>
+    <div className='flex flex-col min-h-screen'>
     <Navbar/>
-    <Outlet/>
+    <div className='flex-grow'>
+      <Outlet/>
+    </div>
     <Footer/>
-    </>
+    </div>
   )
 }
 
