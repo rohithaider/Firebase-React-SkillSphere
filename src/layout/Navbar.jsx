@@ -62,9 +62,9 @@ export const Navbar = () => {
         <div className="navbar-end">
           {user && user?.email ? (
             <div className="flex items-center gap-2">
-              <div >
+              <Link to="/profile" >
                 <img className="w-12 rounded-full" src={user.photoURL} alt="" title={user.displayName}/>
-              </div>
+              </Link>
               <button onClick={logOut} className="btn">LogOut</button>
             </div>
           ) : (

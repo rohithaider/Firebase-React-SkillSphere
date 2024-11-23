@@ -6,6 +6,8 @@ import MainLayout from "./layout/MainLayout";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 import AuthProvider from "./contexts/AuthProvider";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,12 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
+      {
+        path:"profile",
+        element:<ProtectedRoute>
+          <Profile/>
+        </ProtectedRoute>
+      }
     ],
   },
 ]);

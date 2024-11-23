@@ -1,14 +1,55 @@
-
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const handleLogin = (e) => {
+  const { signIn } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle login logic
+    try {
+      // Call the signIn function with email and password
+      await signIn(email, password);
+
+      // Show success toast
+      toast.success("Logged in successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      navigate("/profile")
+    } catch (error) {
+      // Handle errors (if signIn throws one)
+      toast.error(`Login failed: ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   const handleGoogleLogin = () => {
     // Google Login logic
+    toast.info("Google Login coming soon!", {
+      position: "top-right",
+      autoClose: 3000,
+      theme: "light",
+    });
   };
 
   return (
@@ -30,6 +71,8 @@ const Login = () => {
               id="email"
               className="input input-bordered w-full"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -45,6 +88,8 @@ const Login = () => {
               id="password"
               className="input input-bordered w-full"
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
@@ -64,7 +109,7 @@ const Login = () => {
           onClick={handleGoogleLogin}
           className="btn btn-error w-full mt-4"
         >
-          Login with Google.
+          Login with Google
         </button>
         <p className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
@@ -73,6 +118,8 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };
