@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn,googleLogIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -44,12 +44,14 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
+      googleLogIn();
     // Google Login logic
-    toast.info("Google Login coming soon!", {
+    toast.info("Successfully logged in with Google!", {
       position: "top-right",
       autoClose: 3000,
       theme: "light",
     });
+    navigate("/")
   };
 
   return (

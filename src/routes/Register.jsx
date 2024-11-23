@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthProvider";
-import { signOut } from "firebase/auth";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing icons
 
 const Register = () => {
-  const { createUser, setUser, logOut } = useContext(AuthContext);
+  const navigate=useNavigate()
+  const { createUser, setUser, logOut,googleLogIn } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -64,8 +64,9 @@ const Register = () => {
   };
 
   const handleGoogleLogin = () => {
-    console.log("Google Login");
-    toast.info("Redirecting to Google login...");
+    googleLogIn();
+    toast.success("Logged in successfully");
+    navigate("/")
   };
 
   return (
