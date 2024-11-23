@@ -64,7 +64,7 @@ const Login = () => {
           onClick={handleGoogleLogin}
           className="btn btn-error w-full mt-4"
         >
-          Login with Google
+          Login with Google.
         </button>
         <p className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
