@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const Register = () => {
+const {createUser,setUser} = useContext(AuthContext)
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,7 +38,20 @@ const Register = () => {
     }
 
     // Handle registration logic (e.g., sending data to an API)
-    console.log("Registering user:", formData);
+    createUser(formData.email,formData.password)
+    .then((result)=>{
+      const user = result.user;
+      setUser({
+        ...user,
+        displayName:formData.name,
+        photoURL:formData.photoURL,
+      })
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode,errorMessage)
+    })
 
     // Show success message
     toast.success("Registration successful!");
