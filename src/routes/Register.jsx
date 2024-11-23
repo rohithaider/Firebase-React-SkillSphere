@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -27,19 +30,30 @@ const Register = () => {
       setError(
         "Password must have at least one uppercase letter, one lowercase letter, and be at least 6 characters long."
       );
+      toast.error("Password does not meet the required criteria.");
       return;
     }
 
-    // Handle registration logic
+    // Handle registration logic (e.g., sending data to an API)
     console.log("Registering user:", formData);
+
+    // Show success message
+    toast.success("Registration successful!");
 
     // Reset error and form state after successful registration
     setError("");
+    setFormData({
+      name: "",
+      email: "",
+      photoURL: "",
+      password: "",
+    });
   };
 
   const handleGoogleLogin = () => {
     // Google Login logic
     console.log("Google Login");
+    toast.info("Redirecting to Google login...");
   };
 
   return (
@@ -147,11 +161,14 @@ const Register = () => {
 
         <p className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <a href="/login" className="link link-primary">
+          <Link to="/login" className="link link-primary">
             Login here
-          </a>
+          </Link>
         </p>
       </div>
+
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };
