@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const { signIn,googleLogIn } = useContext(AuthContext);
+  const { signIn, googleLogIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Login = () => {
         progress: undefined,
         theme: "colored",
       });
-      navigate("/profile")
+      navigate("/profile");
     } catch (error) {
       // Handle errors (if signIn throws one)
       toast.error(`Login failed: ${error.message}`, {
@@ -44,14 +44,14 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-      googleLogIn();
+    googleLogIn();
     // Google Login logic
     toast.info("Successfully logged in with Google!", {
       position: "top-right",
       autoClose: 3000,
       theme: "light",
     });
-    navigate("/")
+    navigate("/");
   };
 
   return (
@@ -95,10 +95,18 @@ const Login = () => {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="btn btn-primary w-full mt-4"
-          >
+          <p className="mt-4 text-center text-sm">
+            Forgot your password?{" "}
+            <Link
+              to="/forgot-password"
+              state={{ email }} // Pass the current email state to the ForgotPassword page
+              className="link link-primary"
+            >
+              Reset it here
+            </Link>
+          </p>
+
+          <button type="submit" className="btn btn-primary w-full mt-4">
             Login
           </button>
         </form>

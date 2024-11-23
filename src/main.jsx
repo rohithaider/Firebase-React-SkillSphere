@@ -8,6 +8,7 @@ import Register from "./routes/Register";
 import AuthProvider from "./contexts/AuthProvider";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Profile from "./pages/Profile";
+import ForgetPassword from "./pages/ForgetPassword";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         element:<ProtectedRoute>
           <Profile/>
         </ProtectedRoute>
+      },
+      {
+        path:"forgot-password",
+        element:<ForgetPassword/>
       }
     ],
   },

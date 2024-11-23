@@ -12,7 +12,6 @@ const Profile = () => {
     photoURL: user?.photoURL || "",
   });
 
-
   useEffect(() => {
     if (user) {
       setFormData({
@@ -38,17 +37,14 @@ const Profile = () => {
         photoURL: formData.photoURL,
       });
 
-      
       setUser({
         ...user,
         displayName: formData.name,
         photoURL: formData.photoURL,
       });
 
-      toast.success("Profile updated successfully!");
       navigate("/");
     } catch (error) {
-      console.error("Error updating profile:", error);
       toast.error("Failed to update profile. Please try again.");
     }
   };
