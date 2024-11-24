@@ -9,6 +9,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Profile from "./pages/Profile";
 import ForgetPassword from "./pages/ForgetPassword";
+import Home from "./routes/Home";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
+        path:"/",
+        element:<Home/>
+      }
+      ,{
         path: "login",
         element: <Login />,
       },

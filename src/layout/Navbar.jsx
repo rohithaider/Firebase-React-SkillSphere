@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 export const Navbar = () => {
-  const { user,logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto sticky top-0">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
@@ -30,25 +30,16 @@ export const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Item 1</a>
+                <Link to="/" >
+                  SkillSphere
+                </Link>
               </li>
               <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
+                <Link to="/">Home</Link>
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">
+          <Link to="/" className="btn btn-ghost text-xl hidden md:block">
             SkillSphere
           </Link>
         </div>
@@ -61,11 +52,21 @@ export const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user && user?.email ? (
-            <div className="flex items-center gap-2">
-              <Link to="/profile" >
-                <img className="w-12 rounded-full" src={user.photoURL} alt="" title={user.displayName}/>
+            <div className="flex items-center gap-2 ">
+              <Link to="/profile">
+                <div className="flex  flex-col lg:flex-row text-center items-center gap-2 border p-2 rounded-3xl ">
+                  <img
+                    className="w-12 rounded-full "
+                    src={user.photoURL}
+                    alt=""
+                    title={user.displayName}
+                  />
+                  <h1 className="hidden lg:block">My Profile</h1>
+                </div>
               </Link>
-              <button onClick={logOut} className="btn">LogOut</button>
+              <button onClick={logOut} className="btn">
+                LogOut
+              </button>
             </div>
           ) : (
             <Link to="login" className="btn">
