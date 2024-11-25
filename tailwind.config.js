@@ -17,7 +17,11 @@ export default {
       "dark",  // Default dark theme
       "cupcake", 
       "business",
-      "night"// Add more themes as needed
+      "night",
+      "forest",
+      "dracula",
+      "acid",
+      "nord"// Add more themes as needed
     ],
   }
 }
