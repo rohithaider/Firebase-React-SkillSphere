@@ -46,7 +46,7 @@ const auth = getAuth(app)
      }
 
      useEffect(()=>{
-        fetch('/public/services.json')
+        fetch('/services.json')
         .then((response)=>{
             if(!response.ok){
                 throw new Error("Failed to fetch data");
