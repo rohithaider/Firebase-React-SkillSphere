@@ -1,15 +1,21 @@
-/* eslint-disable react/prop-types */
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import Loading from "../components/Loading";
-import { useLocation } from 'react-router-dom';
 
-export default function ProtectedRoute({children}){
-    const{user,loading} = useContext(AuthContext);
-    const location =useLocation();
-    if(loading){
-        return <Loading/>
-    }
-    return user && user?.email ? children:<Navigate state={location.pathname} to="/login" />;
+export default function ProtectedRoute({ children }) {
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (!user || !user?.email) {
+    // If the user is not authenticated, redirect them to the login page
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  // If the user is authenticated, allow access to the requested page
+  return children;
 }

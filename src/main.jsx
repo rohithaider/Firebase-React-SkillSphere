@@ -11,6 +11,8 @@ import Profile from "./pages/Profile";
 import ForgetPassword from "./pages/ForgetPassword";
 import Home from "./routes/Home";
 import ServiceDetails from "./pages/ServiceDetails";
+import NotFound from "./routes/NotFound";
+import Terms from "./routes/Terms";
 
 
 const router = createBrowserRouter([
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: "*", // Catch-all route for 404
+        element: <NotFound />,
+      },
+      {
+        path:"terms",
+        element:<ProtectedRoute><Terms/></ProtectedRoute>
+      }
     
     ],
   },

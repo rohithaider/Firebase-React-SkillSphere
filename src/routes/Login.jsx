@@ -11,6 +11,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   
+  // Get the location from which the user was redirected
+  const location = useLocation();
+  const from = location.state?.from || "/"; 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,9 +32,11 @@ const Login = () => {
         progress: undefined,
         theme: "colored",
       });
-      navigate("/profile");
+
+      // Redirect the user to the previous page
+      navigate(from, { replace: true });
     } catch (error) {
-      // Handle errors (if signIn throws one)
+      // Handle errors 
       toast.error(`Login failed: ${error.message}`, {
         position: "top-right",
         autoClose: 3000,
@@ -53,7 +58,9 @@ const Login = () => {
       autoClose: 3000,
       theme: "light",
     });
-    navigate("/");
+
+    // Redirect to the home page 
+    navigate(from, { replace: true });
   };
 
   return (
@@ -133,7 +140,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      {/* Toast Container */}
+  
       <ToastContainer />
     </div>
   );

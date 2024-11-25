@@ -34,9 +34,14 @@ export const Navbar = () => {
                   SkillSphere
                 </Link>
               </li>
+              <div>
               <li>
                 <Link to="/">Home</Link>
               </li>
+              <li>
+                <Link to="terms">Terms</Link>
+              </li>
+              </div>
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost text-xl hidden md:block">
@@ -47,6 +52,9 @@ export const Navbar = () => {
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/terms">Terms</Link>
             </li>
           </ul>
         </div>
