@@ -22,6 +22,10 @@ SkillSphere is a career counseling website that helps users find the right guida
 
 - **SEO Optimization**: The website is SEO-friendly with the use of **React Helmet** for managing meta tags.
 
+## Live Link
+
+You can visit the live version of the website here: [SkillSphere Live](https://skillsphere-c2034.web.app/)
+
 ## Technologies Used
 
 - **React**: JavaScript library for building user interfaces.
@@ -32,4 +36,5 @@ SkillSphere is a career counseling website that helps users find the right guida
 - **Tailwind CSS**: Utility-first CSS framework for building custom designs.
 - **daisyUI**: Component library built on top of Tailwind CSS for pre-built UI components.
 - **Firebase Authentication**: For user authentication via Google.
+
 
