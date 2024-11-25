@@ -11,7 +11,9 @@ const auth = getAuth(app)
     const provider = new GoogleAuthProvider();
     const [user,setUser] = useState(null)
     const [loading, setLoading] = useState(true);
-    console.log(user)
+    const [data,setData] = useState(null);
+    
+
     const createUser = (email,password)=>{
         return createUserWithEmailAndPassword(auth, email, password)
     }
@@ -38,6 +40,20 @@ const auth = getAuth(app)
      const googleLogIn =()=>{
         return signInWithPopup(auth, provider)
      }
+
+     useEffect(()=>{
+        fetch('/public/services.json')
+        .then((response)=>{
+            if(!response.ok){
+                throw new Error("Failed to fetch data");
+            }
+            return response.json()
+        })
+        .then((jsonData)=>setData(jsonData))
+        .catch((error)=>console.error('Error fetching data',error))
+
+
+     },[])
     
     
     
@@ -49,6 +65,7 @@ const auth = getAuth(app)
         signIn,
         googleLogIn,
         loading,
+        data,
       };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
