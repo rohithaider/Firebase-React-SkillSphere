@@ -16,7 +16,8 @@ export default {
       "light", // Default light theme
       "dark",  // Default dark theme
       "cupcake", 
-      "business",// Add more themes as needed
+      "business",
+      "night"// Add more themes as needed
     ],
   }
 }

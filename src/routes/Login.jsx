@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,7 +47,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     googleLogIn();
     // Google Login logic
-    toast.info("Successfully logged in with Google!", {
+    toast.success("Successfully logged in with Google!", {
       position: "top-right",
       autoClose: 3000,
       theme: "light",

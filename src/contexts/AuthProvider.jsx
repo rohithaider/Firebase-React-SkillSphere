@@ -15,14 +15,17 @@ const auth = getAuth(app)
     
 
     const createUser = (email,password)=>{
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     const signIn = (email,password)=>{
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
     const logOut = ()=>{
+        setLoading(true)
         return signOut(auth);
     }
 
@@ -38,6 +41,7 @@ const auth = getAuth(app)
       }, []);
 
      const googleLogIn =()=>{
+        setLoading(true)
         return signInWithPopup(auth, provider)
      }
 

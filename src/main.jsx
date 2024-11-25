@@ -10,6 +10,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import Profile from "./pages/Profile";
 import ForgetPassword from "./pages/ForgetPassword";
 import Home from "./routes/Home";
+import ServiceDetails from "./pages/ServiceDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -37,7 +39,16 @@ const router = createBrowserRouter([
       {
         path:"forgot-password",
         element:<ForgetPassword/>
-      }
+      },
+      {
+        path: "service-details/:serviceId", // New route for service details
+        element: (
+          <ProtectedRoute>
+            <ServiceDetails />
+          </ProtectedRoute>
+        ),
+      },
+    
     ],
   },
 ]);
