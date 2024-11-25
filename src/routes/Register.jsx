@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../contexts/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Importing icons
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const navigate=useNavigate()
@@ -71,6 +72,9 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-4">
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
       <div className="bg-base-100 p-8 rounded-lg shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center text-primary mb-6">
           Register

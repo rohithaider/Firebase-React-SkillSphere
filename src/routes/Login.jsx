@@ -3,13 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { signIn, googleLogIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -57,6 +58,9 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <div className="bg-base-100 p-8 rounded-lg shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center text-primary mb-6">
           Login

@@ -3,6 +3,7 @@ import { AuthContext } from "../contexts/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -51,6 +52,9 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-base-200 p-4">
+      <Helmet>
+        <title>Profile</title>
+      </Helmet>
       <div className="bg-base-100 p-8 rounded-lg shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center text-primary mb-6">
           My Profile

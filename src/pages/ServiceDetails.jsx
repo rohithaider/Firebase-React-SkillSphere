@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const ServiceDetails = () => {
   const { data,user } = useContext(AuthContext); // Assuming data is an array
@@ -29,6 +30,9 @@ const ServiceDetails = () => {
 
   return (
     <div className="w-5/12 mx-auto">
+        <Helmet>
+        <title>Details</title>
+      </Helmet>
       <h2 className="text-xl font-bold">{service.serviceName}</h2>
       <img
         src={service.image}
