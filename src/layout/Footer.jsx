@@ -48,7 +48,6 @@ export const Footer = () => {
         <aside>
           <p>
             Copyright © {new Date().getFullYear()} - All right reserved by SkillSphere
-            Industries Ltd
           </p>
         </aside>
       </footer>
